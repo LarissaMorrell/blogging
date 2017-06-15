@@ -33,9 +33,9 @@ router.get('/', (req, res) => {
 
 
 router.post('/', jsonParser, (req, res) => {
-	const requiredFields = ['title', 'content', 'author'];
+const requiredFields = ['title', 'content', 'author'];
 
-	//make sure all of the required fields are present
+	//check that all of the required fields are present
 	for (let i = 0; i < requiredFields.length; i++){
 		const field = requiredFields[i];
 		if(!(field in req.body)) {
@@ -44,7 +44,7 @@ router.post('/', jsonParser, (req, res) => {
 			return res.status(400).send(message);
 		}
 	}
-
+	//If we got here, then it's okay to create
 	const blogPost = BlogPosts.create(req.body.title, req.body.content, req.body.author);
 	res.status(201).json(blogPost);
 });
@@ -60,17 +60,38 @@ router.delete('/:id', (req, res) => {
 
 
 
-router.put('/:id', (req, res) => {
+router.put('/:id', jsonParser, (req, res) => {
+	const requiredFields = ['title', 'content', 'author'];
 
+	//check that all of the required fields are present
+	for (let i = 0; i < requiredFields.length; i++){
+		const field = requiredFields[i];
+		if(!(field in req.body)) {
+			const message = `Missing \`${field}\` in request body`;
+			console.error(message);
+			return res.status(400).send(message);
+		}
+	}
+
+	//check that IDs match
+	if(req.params.id !== req.body.id){
+		const message = `Request path id \`${req.params.id}\` and request body id \`
+      			${req.body.id}\` must match`;
+		console.error(message);
+		return res.statuse(400).send(message);
+	}
+
+	//if we got this far, it's ok to update
+	console.log(`Updating blog post \`${req.params.id}\``);
+	BlogPosts.update({
+		id: req.params.id,
+		title: req.body.title,
+		content: req.body.content,
+		author: req.body.author,
+		date: req.body.date || Date.now()
+	});
+	res.status(204).end();
 });
-
-
-
-
-
-
-
-
 
 
 
