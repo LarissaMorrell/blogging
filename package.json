@@ -1,0 +1,26 @@
+{
+  "name": "blog-api",
+  "version": "1.0.0",
+  "description": "a blog created for Thinkful 2.0",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/LarissaMorrell/blogging.git"
+  },
+  "author": "Larissa Morrell",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/LarissaMorrell/blogging/issues"
+  },
+  "homepage": "https://github.com/LarissaMorrell/blogging#readme",
+  "dependencies": {
+    "body-parser": "^1.17.2",
+    "express": "^4.15.3",
+    "morgan": "^1.8.2",
+    "uuid": "^3.0.1"
+  }
+}
