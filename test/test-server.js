@@ -15,45 +15,7 @@ describe('Blog Posts', function() {
         return closeServer();
     });
 
-    it('should list blog entries on GET', function() {
-
-        return chai.request(app)
-            .get('/blog-posts')
-            .then(function(res) {
-                res.should.have.status(200);
-                res.should.be.json;
-                res.body.should.be.a('array');
-                res.body.length.should.be.above(0);
-                res.body.forEach(function(item) {
-                    item.should.be.a('object');
-                    item.should.have.all.keys('title', 'content', 'author', 'id', 'publishDate');
-                });
-            })
-    })
-
-
-    it('should create a new blog entry on POST', function() {
-        const newBlogPost = {
-            title: 'test blog title',
-            content: 'this is a very short paragraph',
-            author: 'joe schmoe',
-            publishDate: '10/1/11'
-        }
-
-        return chai.request(app)
-            .post('/blog-posts')
-            .send(newBlogPost)
-            .then(function(res) {
-                res.should.have.status(201);
-                res.should.be.json;
-                res.should.be.a('object');
-                res.body.should.include.keys('title', 'content', 'author');
-                res.body.id.should.not.be.null;
-            })
-    })
-
-
-    it('should update an existing blog entry on PUT', function() {
+       it('should update an existing blog entry on PUT', function() {
         const updateData = {
             title: 'change this title',
             content: 'this is a new sentence',
@@ -92,4 +54,44 @@ describe('Blog Posts', function() {
     			res.should.have.status(202);
     		})
     })
+
+    it('should list blog entries on GET', function() {
+
+        return chai.request(app)
+            .get('/blog-posts')
+            .then(function(res) {
+                res.should.have.status(200);
+                res.should.be.json;
+                res.body.should.be.a('array');
+                res.body.length.should.be.above(0);
+                res.body.forEach(function(item) {
+                    item.should.be.a('object');
+                    item.should.have.all.keys('title', 'content', 'author', 'id', 'publishDate');
+                });
+            })
+    })
+
+
+    it('should create a new blog entry on POST', function() {
+        const newBlogPost = {
+            title: 'test blog title',
+            content: 'this is a very short paragraph',
+            author: 'joe schmoe',
+            publishDate: '10/1/11'
+        }
+
+        return chai.request(app)
+            .post('/blog-posts')
+            .send(newBlogPost)
+            .then(function(res) {
+                res.should.have.status(201);
+                res.should.be.json;
+                res.should.be.a('object');
+                res.body.should.include.keys('title', 'content', 'author');
+                res.body.id.should.not.be.null;
+            })
+    })
+
+
+ 
 })
