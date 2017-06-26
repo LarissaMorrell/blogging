@@ -43,7 +43,9 @@ const BlogPosts = {
     const postIndex = this.posts.findIndex(
       post => post.id === id);
     if (postIndex > -1) {
-      this.posts.splice(postIndex, 1);
+      return this.posts.splice(postIndex, 1);
+    } else {
+      return undefined;
     }
   },
   update: function(updatedPost) {

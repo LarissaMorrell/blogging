@@ -4,7 +4,7 @@
   "description": "a blog created for Thinkful 2.0",
   "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "mocha ./test",
     "start": "node server.js"
   },
   "repository": {
@@ -19,7 +19,10 @@
   "homepage": "https://github.com/LarissaMorrell/blogging#readme",
   "dependencies": {
     "body-parser": "^1.17.2",
+    "chai": "^4.0.2",
+    "chai-http": "^3.0.0",
     "express": "^4.15.3",
+    "mocha": "^3.4.2",
     "morgan": "^1.8.2",
     "uuid": "^3.0.1"
   }
