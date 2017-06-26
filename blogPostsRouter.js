@@ -10,13 +10,13 @@ BlogPosts.create(
     'My First Blog Post',
     'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.',
     'Jane Doe',
-    'October 31, 2015'
+    new Date('October 31, 2015')
 );
 BlogPosts.create(
     'A Second Post',
     'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.',
     'Frank Lee',
-    'November 11, 2001'
+    new Date('November 11, 2001')
 );
 BlogPosts.create(
     'The Last Blog Post',
@@ -93,9 +93,9 @@ router.put('/:id', jsonParser, (req, res) => {
         title: req.body.title,
         content: req.body.content,
         author: req.body.author,
-        publishDate: req.body.date || Date.now()
+        publishDate: req.body.date || new Date()
     })
-    return res.status(204).json(updatedPost);
+    return res.status(200).json(updatedPost);
 });
 
 

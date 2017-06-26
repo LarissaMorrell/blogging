@@ -58,7 +58,7 @@ describe('Blog Posts', function() {
             title: 'change this title',
             content: 'this is a new sentence',
             author: 'new author',
-            publishDate: '1/01/01'
+            publishDate: new Date()
         }
         return chai.request(app)
             .get('/blog-posts')
@@ -71,11 +71,11 @@ describe('Blog Posts', function() {
             })
             .then(function(res) {
             	// console.log(res);
-             //    res.should.have.status(204);
-             //    res.should.be.json;
-             //    res.body.should.be.a('object');
-             //    res.body.should.include.keys('title', 'content', 'id', 'author', 'publishDate');
-             //    res.body.should.deep.equal(updateData);
+                res.should.have.status(200);
+                res.should.be.json;
+                res.body.should.be.a('object');
+                res.body.should.include.keys('title', 'content', 'id', 'author', 'publishDate');
+                res.body.should.deep.equal(updateData);
             });
     })
 
