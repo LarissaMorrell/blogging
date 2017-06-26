@@ -58,7 +58,7 @@ describe('Blog Posts', function() {
             title: 'change this title',
             content: 'this is a new sentence',
             author: 'new author',
-            publishDate: new Date()
+            publishDate: `${new Date()}`
         }
         return chai.request(app)
             .get('/blog-posts')
@@ -70,7 +70,6 @@ describe('Blog Posts', function() {
                     .send(updateData);
             })
             .then(function(res) {
-            	// console.log(res);
                 res.should.have.status(200);
                 res.should.be.json;
                 res.body.should.be.a('object');
@@ -78,6 +77,8 @@ describe('Blog Posts', function() {
                 res.body.should.deep.equal(updateData);
             });
     })
+
+
 
     it('should delete an existing blog entry on DELETE', function() {
 		return chai.request(app)
