@@ -15,7 +15,6 @@ app.use(bodyParser.json());
 
 
 app.get('/blog-posts', (req, res) => {
-    // return res.json(BlogPost.get());
     const filters = {};
     const queryableFields = ['title', 'content', 'author', 'publishDate'];
     queryableFields.forEach(field => {
@@ -53,7 +52,6 @@ app.post('/blog-posts', (req, res) => {
     for (let i = 0; i < requiredFields.length; i++) {
         const field = requiredFields[i];
         
-        // console.log('\n\n\n\n\n\n\n\nreq.body:\n', req.body);
         if (!(field in req.body)) {
             const message = `Missing \`${field}\` in request body`
             console.error(message);
